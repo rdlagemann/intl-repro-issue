@@ -1,0 +1,14 @@
+{
+  "presets": ["@babel/preset-react"],
+  "plugins": [
+    [
+      "react-intl",
+      {
+        "extractFromFormatMessageCall": true,
+        "messagesDir": "./src/locales/extractedMessages",
+        "extractSourceLocation": true,
+        "idInterpolationPattern": "[sha1:contenthash:7]"
+      }
+    ]
+  ]
+}

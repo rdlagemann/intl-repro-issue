@@ -6,15 +6,27 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "babel-plugin-react-intl": "^7.9.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-intl": "^5.4.2",
     "react-scripts": "3.4.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-scripts eject",
+    "tclear": "rimraf src/locales",
+    "translate": "yarn translate:check && yarn intl:compile:all",
+    "translate:check": "yarn intl:extract && yarn intl:create-messages && node ./translationManager.js",
+    "translate:compile": "yarn translate:check && yarn intl:compile:all",
+    "intl:create-messages": "babel src --out-dir lib && rimraf lib",
+    "intl:extract": "formatjs extract \"src/**/*.js*\"  --out-file src/locales/lang/pt-BR.json --id-interpolation-pattern [sha1:contenthash:7]",
+    "intl:compile:all": "yarn intl:compile:pt && yarn intl:compile:en && yarn intl:compile:es",
+    "intl:compile:pt": "formatjs compile src/locales/lang/pt-BR.json --ast --out-file src/locales/compiledMessages/pt-BR.json",
+    "intl:compile:en": "formatjs compile src/locales/lang/en-US.json --ast --out-file src/locales/compiledMessages/en-US.json",
+    "intl:compile:es": "formatjs compile src/locales/lang/es-SP.json --ast --out-file src/locales/compiledMessages/es-SP.json"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -30,5 +42,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@formatjs/cli": "^2.0.0",
+    "customize-cra": "^1.0.0",
+    "exact-translations-manager": "^1.5.0",
+    "react-app-rewired": "^2.1.6",
+    "rimraf": "^3.0.2"
   }
 }
