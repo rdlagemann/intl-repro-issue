@@ -1,5 +1,5 @@
 import React from "react";
-import MyComponent from "./MyComponent.js";
+import MyComponent from "./MyComponent.jsx";
 import { useIntl } from "react-intl";
 
 export default function MyComponentContainer() {
@@ -7,7 +7,7 @@ export default function MyComponentContainer() {
   return (
     <MyComponent
       extraMessage={intl.formatMessage({
-        defaultMessage: "String defined on MyComponent.JS",
+        defaultMessage: "String defined on MyComponent.JS [pt-BR]",
       })}
     />
   );

@@ -6,7 +6,7 @@ function MyComponent({ extraMessage }) {
     <div>
       <h1>{extraMessage}</h1>
       <h2>
-        <FormattedMessage defaultMessage="String defined on MyComponent.JSX" />
+        <FormattedMessage defaultMessage="String defined on MyComponent.JSX [pt-BR]" />
       </h2>
     </div>
   );
